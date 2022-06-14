@@ -73,7 +73,7 @@ final class UnixTimestamp implements WorksWithDays, WorksWithMonths, WorksWithYe
         );
     }
 
-    public function toNative(): int
+    public function toNative(): string
     {
         return $this->date->getTimestamp();
     }
@@ -86,5 +86,20 @@ final class UnixTimestamp implements WorksWithDays, WorksWithMonths, WorksWithYe
     public static function createFromCurrentTime(): self
     {
         return self::createFromDateTimeObject(new DateTime());
+    }
+
+    public static function getDateFormat(): string
+    {
+        return 'U';
+    }
+
+    public function jsonSerialize(): string
+    {
+        return $this->toNative();
+    }
+
+    public function __toString(): string
+    {
+        return $this->toNative();
     }
 }

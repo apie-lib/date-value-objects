@@ -1,7 +1,7 @@
 <?php
 namespace Apie\DateValueObjects\Interfaces;
 
-use Apie\Core\ValueObjects\ValueObjectInterface;
+use Apie\Core\ValueObjects\Interfaces\TimeRelatedValueObjectInterface;
 use Apie\DateValueObjects\Concerns\CanHaveTimeIntervals;
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -9,7 +9,7 @@ use DateTimeInterface;
 /**
  * @see CanHaveTimeIntervals
  */
-interface WorksWithTimeIntervals extends ValueObjectInterface
+interface WorksWithTimeIntervals extends TimeRelatedValueObjectInterface
 {
     public static function createFromDateTimeObject(DateTimeInterface $dateTime): self;
     public function toDate(): DateTimeImmutable;
