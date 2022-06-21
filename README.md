@@ -1,4 +1,7 @@
 # date-value-objects
+
+ [![Latest Stable Version](http://poser.pugx.org/apie/date-value-objects/v)](https://packagist.org/packages/apie/date-value-objects) [![Total Downloads](http://poser.pugx.org/apie/date-value-objects/downloads)](https://packagist.org/packages/apie/date-value-objects) [![Latest Unstable Version](http://poser.pugx.org/apie/date-value-objects/v/unstable)](https://packagist.org/packages/apie/date-value-objects) [![License](http://poser.pugx.org/apie/date-value-objects/license)](https://packagist.org/packages/apie/date-value-objects) [![PHP Version Require](http://poser.pugx.org/apie/date-value-objects/require/php)](https://packagist.org/packages/apie/date-value-objects) 
+
 [![PHP Composer](https://github.com/apie-lib/date-value-objects/actions/workflows/php.yml/badge.svg?event=push)](https://github.com/apie-lib/date-value-objects/actions/workflows/php.yml)
 
 This package is part of the [Apie](https://github.com/apie-lib) library.
