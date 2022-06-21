@@ -21,9 +21,9 @@ By using these value objects over the PHP datetime objects we can tell if the da
 
 ***LocalDate:*** contains a date with the format in a local date format, for example '2002-12-31' for 31 december 2002.
 
-**Time:*** contains a timestamp with only hours, minutes and seconds.
+***Time:*** contains a timestamp with only hours, minutes and seconds.
 
-**UnixTimestamp:** contains a Unix timestamp.
+***UnixTimestamp:*** contains a Unix timestamp.
 
 ### Interfaces
 ***WorksWithDays:***
