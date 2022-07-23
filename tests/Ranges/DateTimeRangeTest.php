@@ -106,8 +106,8 @@ class DateTimeRangeTest extends TestCase
             [
                 'type' => 'object',
                 'properties' => [
-                    'start' => new Reference(['$ref' => 'DateWithTimezone-post']),
-                    'end' => new Reference(['$ref' => 'DateWithTimezone-post']),
+                    'start' => new Reference(['$ref' => '#/components/schemas/DateWithTimezone-post']),
+                    'end' => new Reference(['$ref' => '#/components/schemas/DateWithTimezone-post']),
                 ],
                 'required' => ['start', 'end'],
             ]
