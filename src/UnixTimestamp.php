@@ -54,8 +54,8 @@ final class UnixTimestamp implements WorksWithDays, WorksWithMonths, WorksWithYe
                     get_debug_type($input),
                     new ReflectionClass(__CLASS__)
                 );
-                $input = (string) $input;
             }
+            $input = (string) $input;
         }
         if (is_int($input)) {
             return new self($input);
@@ -75,7 +75,7 @@ final class UnixTimestamp implements WorksWithDays, WorksWithMonths, WorksWithYe
 
     public function toNative(): string
     {
-        return $this->date->getTimestamp();
+        return (string) $this->date->getTimestamp();
     }
 
     public static function createFromDateTimeObject(DateTimeInterface $dateTime): self

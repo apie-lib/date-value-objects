@@ -24,7 +24,7 @@ final class DateTimeRange implements ValueObjectInterface
         $this->validateState();
     }
 
-    public static function createRandom(Generator $faker)
+    public static function createRandom(Generator $faker): self
     {
         $time1 = $faker->unixTime();
         $time2 = $faker->unixTime();

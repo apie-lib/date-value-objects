@@ -32,7 +32,7 @@ trait CanHaveMonthIntervals
     {
         $date = $this->toDate();
         $object = self::createFromDateTimeObject(
-            $date->setDate($date->format('Y'), $month, $this->day)
+            $date->setDate((int) $date->format('Y'), $month, $this->day)
         );
         $object->day = $this->day;
         return $object;
@@ -46,12 +46,12 @@ trait CanHaveMonthIntervals
     {
         $currentDate = $this->toDate();
         $currentMonth = (int) $currentDate->format('m');
-        $nextDate = $currentDate->setDate($currentDate->format('Y'), $currentMonth + 1, $this->day);
+        $nextDate = $currentDate->setDate((int) $currentDate->format('Y'), $currentMonth + 1, $this->day);
         $nextMonth = (int) $nextDate->format('m');
         $expectedMonth = $currentMonth === 12 ? 1 : ($currentMonth + 1);
         // this means the current month has more days than the next month
         if ($nextMonth !==$expectedMonth) {
-            $nextDate = $currentDate->setDate($currentDate->format('Y'), $currentMonth + 2, 0);
+            $nextDate = $currentDate->setDate((int) $currentDate->format('Y'), $currentMonth + 2, 0);
         }
 
         $object = self::createFromDateTimeObject($nextDate);
@@ -67,12 +67,12 @@ trait CanHaveMonthIntervals
     {
         $currentDate = $this->toDate();
         $currentMonth = (int) $currentDate->format('m');
-        $previousDate = $currentDate->setDate($currentDate->format('Y'), $currentMonth - 1, $this->day);
+        $previousDate = $currentDate->setDate((int) $currentDate->format('Y'), $currentMonth - 1, $this->day);
         $previousMonth = (int) $previousDate->format('m');
         $expectedMonth = $currentMonth === 1 ? 12 : ($currentMonth - 1);
         // this means the current month has more days than the previous month
         if ($previousMonth !== $expectedMonth) {
-            $previousDate = $currentDate->setDate($currentDate->format('Y'), $currentMonth, 0);
+            $previousDate = $currentDate->setDate((int) $currentDate->format('Y'), $currentMonth, 0);
         }
 
         $object = self::createFromDateTimeObject($previousDate);

@@ -32,7 +32,7 @@ trait CanHaveDayIntervals
     {
         $date = $this->toDate();
         $object = self::createFromDateTimeObject(
-            $date->setDate($date->format('Y'), (int) $date->format('m'), $day)
+            $date->setDate((int) $date->format('Y'), (int) $date->format('m'), $day)
         );
         $object->day = $day;
         return $object;
