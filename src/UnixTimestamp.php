@@ -32,7 +32,7 @@ final class UnixTimestamp implements WorksWithDays, WorksWithMonths, WorksWithYe
 
     private int $day;
 
-    public function __construct(int $timestamp)
+    public function __construct(string|int $timestamp)
     {
         $this->date = new DateTimeImmutable("@$timestamp", new DateTimeZone('GMT'));
         $this->day = (int) $this->date->format('d');
