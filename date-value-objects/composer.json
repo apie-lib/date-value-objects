@@ -1,0 +1,35 @@
+{
+  "name": "apie/date-value-objects",
+  "description": "Composer package of the apie library: date value objects",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pieter Jordaan",
+      "email": "pieter_jordaan@hotmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Apie\\DateValueObjects\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Apie\\Tests\\DateValueObjects\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.1",
+    "apie/core": "self.version",
+    "apie/composite-value-objects": "self.version",
+    "cebe/php-openapi": "^1.7"
+  },
+  "require-dev": {
+    "apie/fixtures": "self.version",
+    "phpunit/phpunit": "^9.5",
+    "phpspec/prophecy-phpunit": "^2.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
