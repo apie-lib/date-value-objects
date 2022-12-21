@@ -1,10 +1,9 @@
 <?php
 namespace Apie\Tests\DateValueObjects\Ranges;
 
-use Apie\Core\Exceptions\InvalidTypeException;
-use Apie\Core\Exceptions\RangeMismatchException;
 use Apie\DateValueObjects\DateWithTimezone;
 use Apie\DateValueObjects\Ranges\DateTimeRange;
+use Apie\Fixtures\TestHelpers\TestValidationError;
 use Apie\Fixtures\TestHelpers\TestWithFaker;
 use Apie\Fixtures\TestHelpers\TestWithOpenapiSchema;
 use cebe\openapi\spec\Reference;
@@ -14,6 +13,7 @@ class DateTimeRangeTest extends TestCase
 {
     use TestWithFaker;
     use TestWithOpenapiSchema;
+    use TestValidationError;
 
     /**
      * @test
@@ -57,10 +57,14 @@ class DateTimeRangeTest extends TestCase
      */
     public function it_refuses_start_after_end()
     {
-        $this->expectException(RangeMismatchException::class);
-        new DateTimeRange(
-            DateWithTimezone::fromNative('2005-08-15T15:52:01+00:00'),
-            DateWithTimezone::fromNative('2005-08-13T15:52:01+00:00')
+        $this->assertValidationError(
+            ['start' => '2005-08-15T15:52:01+00:00 is higher than 2005-08-13T15:52:01+00:00'],
+            function () {
+                new DateTimeRange(
+                    DateWithTimezone::fromNative('2005-08-15T15:52:01+00:00'),
+                    DateWithTimezone::fromNative('2005-08-13T15:52:01+00:00')
+                );
+            }
         );
     }
 
@@ -68,30 +72,38 @@ class DateTimeRangeTest extends TestCase
      * @test
      * @dataProvider invalidProvider
      */
-    public function it_refuses_start_after_end_with_fromNative(string $expectedException, array $input)
+    public function it_refuses_start_after_end_with_fromNative(array $expectedErrorMessages, array $input)
     {
-        $this->expectException($expectedException);
-        DateTimeRange::fromNative($input);
+        $this->assertValidationError(
+            $expectedErrorMessages,
+            function () use ($input) {
+                DateTimeRange::fromNative($input);
+            }
+        );
     }
 
     public function invalidProvider()
     {
         yield [
-            RangeMismatchException::class,
+            ['start' => '2005-08-15T15:52:01+00:00 is higher than 1984-08-16T15:52:01+00:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '1984-08-16T15:52:01+00:00'],
 
         ];
         yield [
-            RangeMismatchException::class,
+            ['start' => '2005-08-15T15:52:01+00:00 is higher than 2005-08-15T15:52:01+01:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-15T15:52:01+01:00']
         ];
         yield [
-            InvalidTypeException::class,
+            ['end' => 'Type "(missing value)" is not expected, expected Apie\DateValueObjects\DateWithTimezone'],
             ['start' => '2005-08-15T15:52:01+00:00']
         ];
         yield [
-            InvalidTypeException::class,
+            ['start' => 'Type "(missing value)" is not expected, expected Apie\DateValueObjects\DateWithTimezone'],
             ['end' => '2005-08-15T15:52:01+00:00']
+        ];
+        yield [
+            ['start' => 'Value "not a date" is not valid for value object of type: DateWithTimezone'],
+            ['start' => 'not a date', 'end' => '2005-08-15T15:52:01+01:00']
         ];
     }
 

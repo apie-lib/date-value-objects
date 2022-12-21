@@ -6,6 +6,7 @@ use Apie\Core\Attributes\FakeMethod;
 use Apie\Core\Exceptions\RangeMismatchException;
 use Apie\Core\ValueObjects\Interfaces\ValueObjectInterface;
 use Apie\DateValueObjects\DateWithTimezone;
+use Apie\Serializer\Exceptions\ValidationException;
 use DateTime;
 use Faker\Generator;
 
@@ -43,7 +44,11 @@ final class DateTimeRange implements ValueObjectInterface
     private function validateState(): void
     {
         if ($this->start->toDate() > $this->end->toDate()) {
-            throw new RangeMismatchException($this->start->toDate(), $this->end->toDate());
+            throw ValidationException::createFromArray(
+                [
+                    'start' => new RangeMismatchException($this->start->toDate(), $this->end->toDate())
+                ]
+            );
         }
     }
 }
