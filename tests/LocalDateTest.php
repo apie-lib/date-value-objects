@@ -84,8 +84,8 @@ class LocalDateTest extends TestCase
 
     public function invalidInput()
     {
-        yield ['this is not a date'];
-        yield ['1984-1-1'];
-        yield ['1984-01-32'];
+        yield 'not a date' => ['this is not a date'];
+        yield 'missing 0 prefix on month and day' => ['1984-1-1'];
+        yield 'invalid day/month combination' => ['1984-01-32'];
     }
 }

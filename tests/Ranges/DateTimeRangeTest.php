@@ -37,15 +37,15 @@ class DateTimeRangeTest extends TestCase
 
     public function inputProvider()
     {
-        yield [
+        yield 'day range' => [
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-16T15:52:01+00:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-16T15:52:01+00:00']
         ];
-        yield [
+        yield 'start and date same' => [
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-15T15:52:01+00:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-15T15:52:01+00:00']
         ];
-        yield [
+        yield '1 hour range' => [
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-15T16:52:01+01:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-15T16:52:01+01:00']
         ];
@@ -84,24 +84,24 @@ class DateTimeRangeTest extends TestCase
 
     public function invalidProvider()
     {
-        yield [
+        yield 'start date higher than end date' => [
             ['start' => '2005-08-15T15:52:01+00:00 is higher than 1984-08-16T15:52:01+00:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '1984-08-16T15:52:01+00:00'],
 
         ];
-        yield [
+        yield 'start date higher than end date (different timezone)' => [
             ['start' => '2005-08-15T15:52:01+00:00 is higher than 2005-08-15T15:52:01+01:00'],
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-15T15:52:01+01:00']
         ];
-        yield [
+        yield 'end is missing' => [
             ['end' => 'Type "(missing value)" is not expected, expected Apie\DateValueObjects\DateWithTimezone'],
             ['start' => '2005-08-15T15:52:01+00:00']
         ];
-        yield [
+        yield 'start is missing' => [
             ['start' => 'Type "(missing value)" is not expected, expected Apie\DateValueObjects\DateWithTimezone'],
             ['end' => '2005-08-15T15:52:01+00:00']
         ];
-        yield [
+        yield 'invalid start value' => [
             ['start' => 'Value "not a date" is not valid for value object of type: DateWithTimezone'],
             ['start' => 'not a date', 'end' => '2005-08-15T15:52:01+01:00']
         ];

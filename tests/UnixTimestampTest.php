@@ -115,8 +115,8 @@ class UnixTimestampTest extends TestCase
 
     public function invalidInput()
     {
-        yield ['this is not a date'];
-        yield ['1984-1-1'];
-        yield ['1984-01-32'];
+        yield 'not a timestamp' => ['this is not a date'];
+        yield 'date without 0 prefix' => ['1984-1-1'];
+        yield 'date with invalid date' => ['1984-01-32'];
     }
 }

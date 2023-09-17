@@ -109,8 +109,8 @@ class DateWithTimezoneTest extends TestCase
 
     public function invalidInput()
     {
-        yield ['this is not a date'];
-        yield ['2005-8-15T15:52:01+00:00'];
-        yield ['1984-01-32T15:52:01+00:00'];
+        yield 'not a date' => ['this is not a date'];
+        yield 'missing prefix 0 on month' => ['2005-8-15T15:52:01+00:00'];
+        yield 'invalid date/month combination' => ['1984-01-32T15:52:01+00:00'];
     }
 }
