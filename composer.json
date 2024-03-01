@@ -22,7 +22,6 @@
   "require": {
     "php": ">=8.1",
     "apie/core": "self.version",
-    "apie/composite-value-objects": "self.version",
     "cebe/php-openapi": "^1.7"
   },
   "require-dev": {
