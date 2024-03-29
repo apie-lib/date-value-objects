@@ -119,4 +119,13 @@ class UnixTimestampTest extends TestCase
         yield 'date without 0 prefix' => ['1984-1-1'];
         yield 'date with invalid date' => ['1984-01-32'];
     }
+
+    /**
+     * @test
+     */
+    public function it_can_create_UnixTimestamp_from_current_time()
+    {
+        $testItem = UnixTimestamp::createFromCurrentTime();
+        $this->assertMatchesRegularExpression('/^[1-9][0-9]+$/', $testItem->toNative());
+    }
 }

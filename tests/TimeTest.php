@@ -62,7 +62,7 @@ class TimeTest extends TestCase
     {
         yield 'not a time' => ['this is not a time'];
         yield 'date, no time' => ['1984-1-1'];
-        yield 'incorrect horus' => ['25:12'];
+        yield 'incorrect hours' => ['25:12:01'];
         yield 'date + time' => ['1984-01-32 12:23'];
     }
 }
