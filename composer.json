@@ -19,6 +19,16 @@
       "Apie\\Tests\\DateValueObjects\\": "tests/"
     }
   },
+  "extra": {
+    "apie-objects": [
+      "Apie\\DateValueObjects\\Ranges\\DateTimeRange",
+      "Apie\\DateValueObjects\\DateWithTimezone",
+      "Apie\\DateValueObjects\\HoursAndMinutes",
+      "Apie\\DateValueObjects\\LocalDate",
+      "Apie\\DateValueObjects\\Time",
+      "Apie\\DateValueObjects\\UnixTimestamp"
+    ]
+  },
   "require": {
     "php": ">=8.1",
     "apie/core": "self.version",
