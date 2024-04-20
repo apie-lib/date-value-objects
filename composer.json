@@ -23,7 +23,7 @@
     "apie-objects": [
       "Apie\\DateValueObjects\\Ranges\\DateTimeRange",
       "Apie\\DateValueObjects\\DateWithTimezone",
-      "Apie\\DateValueObjects\\HoursAndMinutes",
+      "Apie\\DateValueObjects\\HourAndMinutes",
       "Apie\\DateValueObjects\\LocalDate",
       "Apie\\DateValueObjects\\Time",
       "Apie\\DateValueObjects\\UnixTimestamp"
