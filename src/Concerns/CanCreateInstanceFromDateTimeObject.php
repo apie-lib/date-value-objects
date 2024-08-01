@@ -1,6 +1,7 @@
 <?php
 namespace Apie\DateValueObjects\Concerns;
 
+use Apie\Core\ApieLib;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -27,6 +28,6 @@ trait CanCreateInstanceFromDateTimeObject
 
     public static function createFromCurrentTime(): self
     {
-        return self::createFromDateTimeObject(new DateTime());
+        return self::createFromDateTimeObject(ApieLib::getPsrClock()->now());
     }
 }
