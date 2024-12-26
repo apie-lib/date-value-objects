@@ -12,9 +12,7 @@ trait TestsTime
 
     abstract protected function timeMethodsProvider(): iterable;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_change_timestamp()
     {
         $testCase = function (

@@ -15,27 +15,23 @@ class DateTimeRangeTest extends TestCase
     use TestWithOpenapiSchema;
     use TestValidationError;
 
-    /**
-     * @test
-     * @dataProvider inputProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('inputProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function fromNative_allows_valid_arrays(array $expected, array $input)
     {
         $testItem = DateTimeRange::fromNative($input);
         $this->assertEquals($expected, $testItem->toNative());
     }
 
-    /**
-     * @test
-     * @dataProvider inputProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('inputProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_allows_all_valid_arrays(array $expected, array $input)
     {
         $testItem = new DateTimeRange(DateWithTimezone::fromNative($input['start']), DateWithTimezone::fromNative($input['end']));
         $this->assertEquals($expected, $testItem->toNative());
     }
 
-    public function inputProvider()
+    public static function inputProvider()
     {
         yield 'day range' => [
             ['start' => '2005-08-15T15:52:01+00:00', 'end' => '2005-08-16T15:52:01+00:00'],
@@ -51,10 +47,8 @@ class DateTimeRangeTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-
-     */
+    
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_refuses_start_after_end()
     {
         $this->assertValidationError(
@@ -68,10 +62,8 @@ class DateTimeRangeTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     * @dataProvider invalidProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_refuses_start_after_end_with_fromNative(array $expectedErrorMessages, array $input)
     {
         $this->assertValidationError(
@@ -82,7 +74,7 @@ class DateTimeRangeTest extends TestCase
         );
     }
 
-    public function invalidProvider()
+    public static function invalidProvider()
     {
         yield 'start date higher than end date' => [
             ['start' => '2005-08-15T15:52:01+00:00 is higher than 1984-08-16T15:52:01+00:00'],
@@ -107,9 +99,7 @@ class DateTimeRangeTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_works_with_schema_generator()
     {
         $this->runOpenapiSchemaTestForCreation(
@@ -126,9 +116,7 @@ class DateTimeRangeTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_works_with_apie_faker()
     {
         $this->runFakerTest(DateTimeRange::class);

@@ -97,17 +97,15 @@ class DateWithTimezoneTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider invalidInput
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidInput')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_validates_invalid_input(string $input)
     {
         $this->expectException(InvalidStringForValueObjectException::class);
         DateWithTimezone::fromNative($input);
     }
 
-    public function invalidInput()
+    public static function invalidInput()
     {
         yield 'not a date' => ['this is not a date'];
         yield 'missing prefix 0 on month' => ['2005-8-15T15:52:01+00:00'];

@@ -103,26 +103,22 @@ class UnixTimestampTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider invalidInput
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidInput')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_validates_invalid_input(string $input)
     {
         $this->expectException(InvalidStringForValueObjectException::class);
         UnixTimestamp::fromNative($input);
     }
 
-    public function invalidInput()
+    public static function invalidInput()
     {
         yield 'not a timestamp' => ['this is not a date'];
         yield 'date without 0 prefix' => ['1984-1-1'];
         yield 'date with invalid date' => ['1984-01-32'];
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_create_UnixTimestamp_from_current_time()
     {
         $testItem = UnixTimestamp::createFromCurrentTime();

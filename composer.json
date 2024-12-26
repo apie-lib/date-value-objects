@@ -30,13 +30,13 @@
     ]
   },
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.3",
     "apie/core": "self.version",
-    "cebe/php-openapi": "^1.7"
+    "devizzent/cebe-php-openapi": "^1.1.2"
   },
   "require-dev": {
     "apie/fixtures": "self.version",
-    "phpunit/phpunit": "^9.6.19",
+    "phpunit/phpunit": "^11.5.2",
     "phpspec/prophecy-phpunit": "^2.2"
   },
   "minimum-stability": "dev",
