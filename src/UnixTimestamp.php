@@ -1,7 +1,9 @@
 <?php
 namespace Apie\DateValueObjects;
 
+use Apie\Core\Exceptions\InvalidTypeException;
 use Apie\Core\ValueObjects\Exceptions\InvalidStringForValueObjectException;
+use Apie\Core\ValueObjects\Utils;
 use Apie\DateValueObjects\Concerns\CanHaveDayIntervals;
 use Apie\DateValueObjects\Concerns\CanHaveMonthIntervals;
 use Apie\DateValueObjects\Concerns\CanHaveTimeIntervals;
@@ -48,29 +50,15 @@ final class UnixTimestamp implements WorksWithDays, WorksWithMonths, WorksWithYe
         if ($input instanceof DateTimeInterface) {
             return new self($input->getTimestamp());
         }
-        if (is_object($input)) {
-            if (!is_callable([$input, '__toString'])) {
-                throw new InvalidStringForValueObjectException(
-                    get_debug_type($input),
-                    new ReflectionClass(__CLASS__)
-                );
-            }
-            $input = (string) $input;
+        try {
+            return new self(Utils::toInt($input));
+        } catch (InvalidTypeException $invalidType) {
+            throw new InvalidStringForValueObjectException(
+                Utils::toString($input),
+                new ReflectionClass(__CLASS__),
+                $invalidType
+            );
         }
-        if (is_int($input)) {
-            return new self($input);
-        }
-        if (is_double($input)) {
-            return new self((int) $input);
-        }
-        if (is_string($input) && preg_match('/^[1-9][0-9]*$/', $input)) {
-            return new self((int) $input);
-        }
-
-        throw new InvalidStringForValueObjectException(
-            is_string($input) ? $input : get_debug_type($input),
-            new ReflectionClass(__CLASS__)
-        );
     }
 
     public function toNative(): string

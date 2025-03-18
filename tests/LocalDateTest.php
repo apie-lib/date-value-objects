@@ -72,20 +72,18 @@ class LocalDateTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider invalidInput
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidInput')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_validates_invalid_input(string $input)
     {
         $this->expectException(InvalidStringForValueObjectException::class);
         LocalDate::fromNative($input);
     }
 
-    public function invalidInput()
+    public static function invalidInput()
     {
-        yield ['this is not a date'];
-        yield ['1984-1-1'];
-        yield ['1984-01-32'];
+        yield 'not a date' => ['this is not a date'];
+        yield 'missing 0 prefix on month and day' => ['1984-1-1'];
+        yield 'invalid day/month combination' => ['1984-01-32'];
     }
 }

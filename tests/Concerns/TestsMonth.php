@@ -43,9 +43,7 @@ trait TestsMonth
         $testSuite->runTestCases();
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_remembers_the_day_when_picking_the_next_month()
     {
         $testCase = function (string $testCase, string $input, string $month1, string $month2, string $month3) {
@@ -75,9 +73,7 @@ trait TestsMonth
     }
 
     
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_remembers_the_day_when_picking_the_previous_month()
     {
         $testCase = function (string $testCase, string $input, string $month1, string $month2, string $month3) {

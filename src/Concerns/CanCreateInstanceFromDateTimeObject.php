@@ -1,6 +1,9 @@
 <?php
 namespace Apie\DateValueObjects\Concerns;
 
+use Apie\Core\ApieLib;
+use Apie\Core\Attributes\CmsSingleInput;
+use Apie\Core\Dto\CmsInputOption;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -9,6 +12,7 @@ use ReflectionClass;
 /**
  * Adds method to date value objects to convert a PHP Datetime object in the value object.
  */
+#[CmsSingleInput(['datetime'], new CmsInputOption(dateFormatMethod: 'getDateFormat'))]
 trait CanCreateInstanceFromDateTimeObject
 {
     /**
@@ -27,6 +31,6 @@ trait CanCreateInstanceFromDateTimeObject
 
     public static function createFromCurrentTime(): self
     {
-        return self::createFromDateTimeObject(new DateTime());
+        return self::createFromDateTimeObject(ApieLib::getPsrClock()->now());
     }
 }
