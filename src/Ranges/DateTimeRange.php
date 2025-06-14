@@ -1,6 +1,7 @@
 <?php
 namespace Apie\DateValueObjects\Ranges;
 
+use Apie\Core\Attributes\Description;
 use Apie\Core\Attributes\FakeMethod;
 use Apie\Core\Exceptions\RangeMismatchException;
 use Apie\Core\ValueObjects\CompositeValueObject;
@@ -11,6 +12,7 @@ use DateTime;
 use Faker\Generator;
 
 #[FakeMethod("createRandom")]
+#[Description("Represent a range between two Dates. The start date is always lower than the end date")]
 final class DateTimeRange implements ValueObjectInterface
 {
     use CompositeValueObject;
