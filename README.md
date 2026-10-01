@@ -19,6 +19,12 @@ over DateTimeImmutable in PHP? The thing is that DateTime always contains days, 
 
 By using these value objects over the PHP datetime objects we can tell if the date format we expect is actually using all these properties.
 
+### Standalone usage
+Install it with:
+```bash
+composer require apie/date-value-objects
+```
+
 ### Available classes
 
 ***DateWithTimezone:*** contains years, months, days, hours, seconds and also timezones. They should be in the format as DateTime::ATOM as a standard.
